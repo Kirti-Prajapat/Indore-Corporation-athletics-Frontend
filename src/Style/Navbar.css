@@ -1,0 +1,74 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 40px;
+  /* 🔹 Attractive gradient background */
+  background: linear-gradient(90deg, #007bff, #00c6ff);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+/* Left side: logo + heading */
+.navbar-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.navbar-left .logo {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #fff; /* white border for contrast */
+}
+
+/* 🔹 Stylish heading */
+.navbar-left h3 {
+  color: #ffffff;
+  font-size: 1.4rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Right side links */
+.navbar-right a {
+  margin-left: 25px;
+  text-decoration: none;
+  color: #ffffff;
+  font-weight: 500;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+/* Hover effect for links */
+.navbar-right a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0%;
+  height: 2px;
+  background-color: #fff;
+  transition: width 0.3s ease;
+}
+
+.navbar-right a:hover::after {
+  width: 100%;
+}
+
+.navbar-right a:hover {
+  color: #f8f9fa;
+  transform: translateY(-1px);
+}
