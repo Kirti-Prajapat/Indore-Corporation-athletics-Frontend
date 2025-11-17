@@ -4,10 +4,10 @@ import "../Style/Signin.css";
 import { useNavigate } from "react-router-dom";
 
 
-function Signin() {
+function AdminSignin() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-//   const navigate = useNavigate();
+  const navigate = useNavigate();
 
 
    const handleLogin = async(e)=>{
@@ -20,25 +20,25 @@ function Signin() {
 
 
     try{
-      const response = await axios.post("http://localhost:9900/athletics/signin",
+      const response = await axios.post("http://localhost:9900/adminverify/signinadmin",
         {email,
         password,
     });
 
     alert(response.data.message);
 
-    // const role = response.data.user.role;
+    const role = response.data.user.role;
 
     const token=response.data.token
     localStorage.setItem('token',token)
     console.log(token)
 
 
-    //  if (role === "admin") {
-    //     navigate("/admin");
-    //   } else {
-    //     navigate("/");
-    //   }
+     if (role === "admin") {
+        navigate("/admindashboard");
+      } else {
+        navigate("/");
+      }
 
     } catch(error){
       alert(error.response?.data?.message || "Login Failed");
@@ -78,11 +78,11 @@ function Signin() {
         </form>
 
         <p className="signup-link">
-          Don’t have an account? <a href="/signup">Sign Up</a>
+          Don’t have an account? <a href="/adminsignup">Sign Up</a>
         </p>
       </div>
     </div>
   );
 }
 
-export default Signin;
+export default AdminSignin;

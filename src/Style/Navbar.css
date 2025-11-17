@@ -3,58 +3,85 @@
     padding: 0;
     box-sizing: border-box;
 }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Navbar Main Container */
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 12px 40px;
-  /* 🔹 Attractive gradient background */
-  background: linear-gradient(90deg, #007bff, #00c6ff);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  padding: 14px 50px;
+  font-family: sans-serif;
+  background: linear-gradient(100deg, #001f3f, #004080, #be4741);
+  background-size: 200% 200%;
+  animation: gradientMove 6s ease infinite;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
   position: sticky;
   top: 0;
   z-index: 1000;
 }
 
-/* Left side: logo + heading */
+@keyframes gradientMove {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+
 .navbar-left {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 14px;
 }
 
 .navbar-left .logo {
-  width: 55px;
-  height: 55px;
+  width: 58px;
+  height: 58px;
   border-radius: 50%;
   object-fit: cover;
-  border: 2px solid #fff; /* white border for contrast */
+  border: 2px solid #fff;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
 }
 
-/* 🔹 Stylish heading */
+/* 🔸 Heading */
 .navbar-left h3 {
   color: #ffffff;
-  font-size: 1.4rem;
-  font-weight: 600;
+  font-size: 1.5rem;
+  font-weight: 700;
   letter-spacing: 1px;
   text-transform: uppercase;
-  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
+  text-shadow: 1px 2px 6px rgba(0, 0, 0, 0.4);
+  transition: color 0.3s ease;
 }
 
-/* Right side links */
+.navbar-left h3:hover {
+  color: #ffe600;
+}
+
+/* 🔹 Right Section: Links */
 .navbar-right a {
-  margin-left: 25px;
+  margin-left: 28px;
   text-decoration: none;
   color: #ffffff;
   font-weight: 500;
-  font-size: 1rem;
+  font-size: 1.05rem;
   transition: all 0.3s ease;
   position: relative;
 }
 
-/* Hover effect for links */
+/* Underline animation on hover */
 .navbar-right a::after {
-  content: '';
+  content: "";
   position: absolute;
   left: 0;
   bottom: -4px;
@@ -69,6 +96,49 @@
 }
 
 .navbar-right a:hover {
-  color: #f8f9fa;
+  color: #ffe600;
   transform: translateY(-1px);
+}
+
+/*  Logout Button Styling */
+.navbar-right button {
+  margin-left: 20px;
+  background-color: #ff3b30;
+  color: #fff;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.navbar-right button:hover {
+  background-color: #c82333;
+  transform: scale(1.05);
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
+}
+
+/* 📱 Responsive Design */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    padding: 10px 20px;
+  }
+
+  .navbar-left h3 {
+    font-size: 1.2rem;
+    text-align: center;
+  }
+
+  .navbar-right {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 10px;
+  }
+
+  .navbar-right a {
+    margin: 8px 12px;
+  }
 }
