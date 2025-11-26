@@ -1,182 +1,4 @@
-/* 
-.home-page {
-  background-color: #f8f9fa;
-  min-height: 100vh;
-  padding-bottom: 40px;
-  font-family: "Poppins", sans-serif;
-}
 
-.carousel-container {
-  width: 100%;
-  max-width: 1300px;
-  margin: 6px auto;
-  overflow: hidden;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-}
-
-
-.carousel .slide img {
-  width: 100%;
-  height: 500px;
-  object-fit: cover;
-
-}
-
-
-.event-section {
-  text-align: center;
-  margin-top: 60px;
-  padding: 0 30px;
-}
-
-.event-section h2 {
-  font-size: 2rem;
-  color: #0d3b66;
-  margin-bottom: 25px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-
-.event-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 25px;
-  width: 90%;
-  margin: 0 auto;
-}
-
-.event-card {
-  background-color: #fff;
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  cursor: pointer;
-  overflow: hidden;
-}
-
-.event-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
-}
-
-.event-card img {
-  width: 100%;
-  height: 220px;
-  object-fit: cover;
-}
-
-.event-card h3 {
-  padding: 12px 0;
-  font-size: 1.2rem;
-  color: #007bff;
-  background-color: #f0f8ff;
-  margin: 0;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-}
-
-@media (max-width: 768px) {
-  .carousel .slide img {
-    height: 300px;
-  }
-
-  .event-section h2 {
-    font-size: 1.6rem;
-  }
-
-  .event-card h3 {
-    font-size: 1rem;
-  }
-} */
-
-
-
-
-/* Container styling for the whole Home section */
-/* .home-container {
-  background-color: #f4f6fa;
-  min-height: 100vh;
-  padding-bottom: 40px;
-  font-family: sans-serif;
-}
-
-
-.hero-section {
-  background: linear-gradient(120deg, #001f3f, #004080);
-  color: white;
-  text-align: center;
-  padding: 60px 20px;
-  height: 80vh;
- 
-}
-
-.hero-section h2 {
-  font-size: 36px;
-  font-weight: 700;
-  margin-bottom: 15px;
-  color: #fff;
-   margin-top: 9%;
-
-}
-
-.hero-section p {
-  font-size: 18px;
-  max-width: 700px;
-  margin: 0 auto;
-  line-height: 1.6;
-}
-
-
-.programs-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 20px;
-  padding: 40px 60px;
-}
-
-
-.program-card {
-  background-color: white;
-  border-radius: 10px;
-  padding: 25px 20px;
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
-  text-align: center;
-  transition: all 0.3s ease;
-  border-top: 5px solid #004080;
-}
-
-.program-card:hover {
-  transform: scale(1.05);
-  box-shadow: 0 5px 12px rgba(0, 0, 0, 0.2);
-  border-top-color: #ff4136;
-}
-
-.program-card h3 {
-  color: #001f3f;
-  font-weight: 600;
-  font-size: 20px;
-}
-
-
-@media (max-width: 768px) {
-  .hero-section h2 {
-    font-size: 28px;
-  }
-
-  .hero-section p {
-    font-size: 16px;
-    padding: 0 10px;
-  }
-
-  .programs-grid {
-    padding: 20px;
-  }
-} */
-
-
-/* ------------------------------
-   Home Container
------------------------------- */
 .home-container {
   background-color: #f4f6fa;
   min-height: 100vh;
@@ -184,9 +6,7 @@
   font-family: sans-serif;
 }
 
-/* ------------------------------
-   Carousel Container
------------------------------- */
+
 .carousel-container {
   position: relative;
   width: 100%;
@@ -229,9 +49,6 @@
   text-shadow: 0px 0px 6px rgba(0, 0, 0, 0.7);
 }
 
-/* ------------------------------
-   Programs Section
------------------------------- */
 .programs-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -248,8 +65,13 @@
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   transition: 0.3s ease;
   border-top: 5px solid #004080;
-}
 
+  opacity: 0;
+  transform: translateY(-50px);
+}
+.program-card.show {
+  animation: slideFromTop 0.8s ease forwards;
+}
 .program-card:hover {
   transform: scale(1.05);
   border-top-color: #ff3b30;
@@ -262,27 +84,26 @@
   font-weight: 600;
 }
 
-/* ------------------------------
-   Responsive Design
------------------------------- */
-@media (max-width: 768px) {
-  .hero-overlay h2 {
-    font-size: 28px;
+@keyframes slideFromTop {
+  0% {
+    opacity: 0;
+    transform: translateY(-50px);
   }
-
-  .hero-overlay p {
-    font-size: 15px;
-    padding: 0 15px;
-  }
-
-  .programs-grid {
-    padding: 30px 20px;
+  100% {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
+/* .program-card {
+  opacity: 0;
+  transform: translateY(-50px);
+  transition: 0.3s ease;
+}
 
-/* */
-
+.program-card.show {
+  animation: slideFromTop 0.8s ease forwards;
+} */
 
 .event-gallery {
   display: grid;
@@ -334,3 +155,123 @@ p {
   font-size: 18px;
   color: #333;
 }
+
+.blur-background {
+  filter: blur(6px);
+  pointer-events: none;
+  user-select: none;
+  transition: 0.3s ease;
+}
+
+/* ---- Popup Overlay ---- */
+.signup-popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  justify-content: center;
+  align-items: center;   /* perfect center */
+  z-index: 999;
+}
+
+/* ---- Popup Box ---- */
+.signup-popup-box {
+  background: #fff;
+  width: 90%;
+  max-width: 360px;
+  /* height: 100vh;         */
+  padding: 0 22px;
+  margin-top: 14%;
+  border-radius: 14px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  position: relative;
+  overflow: hidden;
+  animation: popupAnimation 0.3s ease-in-out;
+}
+
+/* ---- Close Icon ---- */
+.close-menu {
+  font-size: 30px;
+  color: black;
+  border-radius: 50%;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+/* ---- Animation ---- */
+@keyframes popupAnimation {
+  from {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* MOBILE (max-width: 768px) */
+@media (max-width: 768px) {
+  .carousel-container,
+  .carousel-slide img {
+    height: 60vh;
+  }
+
+  .hero-overlay h2 {
+    font-size: 28px;
+  }
+
+  .hero-overlay p {
+    font-size: 15px;
+    padding: 0 15px;
+  }
+
+  .programs-grid {
+    padding: 30px 20px;
+  }
+
+  .event-image {
+    height: 180px;
+  }
+
+  .signup-popup-box {
+    max-width: 90%;
+    padding: 18px 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .carousel-container,
+  .carousel-slide img {
+    height: 50vh;
+  }
+
+  .hero-overlay h2 {
+    font-size: 22px;
+  }
+
+  .hero-overlay p {
+    font-size: 14px;
+  }
+
+  .programs-grid {
+    padding: 20px;
+  }
+
+  .event-gallery {
+    padding: 15px;
+  }
+
+  .signup-popup-box {
+    padding: 15px 15px;
+     max-width: 90%;
+  }
+}
+
+

@@ -44,12 +44,10 @@
 .user-table th,
 .user-table td {
   padding: 14px 12px;
+  text-align: center;
   border-bottom: 1px solid #ddd;
 }
 
-.user-table tr:hover {
-  background: #f1f2ff;
-}
 
 /* ---------- Add / Edit Event Form ---------- */
 .event-form-section {
@@ -151,8 +149,10 @@
 /* ---------- Edit & Delete Buttons ---------- */
 .btn-row {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   margin-top: 10px;
+  gap: 10px;
+ 
 }
 
 .edit-btn,
@@ -162,7 +162,7 @@
   border-radius: 8px;
   cursor: pointer;
   font-size: 14px;
-  margin: 5px;
+  font-weight: bold;
 }
 
 .edit-btn {

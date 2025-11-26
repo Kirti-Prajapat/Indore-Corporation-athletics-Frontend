@@ -1,71 +1,35 @@
-// import { useEffect, useState } from "react";
-// import axios from "axios";
-
-// export default function AdminDashboard() {
-//   const [users, setUsers] = useState([]);
-//   const [programs, setPrograms] = useState([]);
-
-//   useEffect(() => {
-//     async function fetchData() {
-//       const userRes = await axios.get("http://localhost:5000/api/admin/users");
-//       const progRes = await axios.get("http://localhost:5000/api/admin/programs");
-//       setUsers(userRes.data);
-//       setPrograms(progRes.data);
-//     }
-//     fetchData();
-//   }, []);
-
-//   return (
-//     <div className="admin">
-//       <h2>Admin Dashboard</h2>
-//       <h3>Registered Users</h3>
-//       <ul>
-//         {users.map((u) => (
-//           <li key={u._id}>{u.name} - {u.email}</li>
-//         ))}
-//       </ul>
-
-//       <h3>Programs</h3>
-//       <ul>
-//         {programs.map((p) => (
-//           <li key={p._id}>{p.title}</li>
-//         ))}
-//       </ul>
-//     </div>
-//   );
-// }
-
-
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "../Style/AdminDashboard.css";
 
 function AdminDashboard() {
-  const [users, setUsers] = useState([]);
+  
+  const [athletes, setAthletes] = useState([]);
   const [events, setEvents] = useState([]);
+
   const [form, setForm] = useState({
     title: "",
     description: "",
     imageUrl: "",
     videoUrl: "",
   });
+
   const [editId, setEditId] = useState(null);
 
   const token = localStorage.getItem("token");
 
-  // Fetch Users
-  const fetchUsers = async () => {
+
+  // fetch athletics (registration form user)
+  const fetchAthletes = async () => {
     try {
-      const res = await axios.get("http://localhost:9900/admin/users", {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-      setUsers(res.data);
+      const res = await axios.get("http://localhost:9900/athletics/all");
+      setAthletes(res.data);
     } catch (error) {
       console.log(error);
     }
   };
 
-  // Fetch Events
+  // fetch events 
   const fetchEvents = async () => {
     try {
       const res = await axios.get("http://localhost:9900/eventdata/getEvent");
@@ -76,11 +40,12 @@ function AdminDashboard() {
   };
 
   useEffect(() => {
-    fetchUsers();
+    // fetchSignupUsers();
+    fetchAthletes();
     fetchEvents();
   }, []);
 
-  // Add/Update Event
+  // add or update event
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -91,24 +56,23 @@ function AdminDashboard() {
           form,
           { headers: { Authorization: `Bearer ${token}` } }
         );
-        alert("Event updated");
+        alert("Event Updated Successfully");
       } else {
         await axios.post("http://localhost:9900/eventdata/add", form, {
           headers: { Authorization: `Bearer ${token}` },
         });
-        alert("Event added");
+        alert("Event Added Successfully");
       }
 
       setForm({ title: "", description: "", imageUrl: "", videoUrl: "" });
       setEditId(null);
       fetchEvents();
-
     } catch (error) {
       console.log(error);
     }
   };
 
-  // Edit button action
+  // edit event
   const handleEdit = (item) => {
     setEditId(item._id);
     setForm({
@@ -119,7 +83,7 @@ function AdminDashboard() {
     });
   };
 
-  // Delete event
+  // delete event
   const handleDelete = async (id) => {
     if (!window.confirm("Delete this event?")) return;
 
@@ -127,6 +91,7 @@ function AdminDashboard() {
       await axios.delete(`http://localhost:9900/eventdata/delete/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
+      alert("Event Deleted");
       fetchEvents();
     } catch (error) {
       console.log(error);
@@ -135,35 +100,39 @@ function AdminDashboard() {
 
   return (
     <div className="dashboard-container">
-
       <h1 className="dashboard-title">Admin Dashboard</h1>
 
-      {/* Registered Users Section */}
       <section className="user-section">
-        <h2>Registered Users</h2>
+        <h2>Athletics Registrations</h2>
 
         <table className="user-table">
           <thead>
             <tr>
               <th>Name</th>
-              <th>Email</th>
-              <th>Registered On</th>
+              <th>Mobile</th>
+              <th>Gender</th>
+              <th>Age</th>
+              <th>City</th>
+              <th>Activities</th>
+              <th>Reason</th>
             </tr>
           </thead>
-
           <tbody>
-            {users.map((u) => (
+            {athletes.map((u) => (
               <tr key={u._id}>
                 <td>{u.name}</td>
-                <td>{u.email}</td>
-                <td>{new Date(u.createdAt).toLocaleDateString()}</td>
+                <td>{u.mobile}</td>
+                <td>{u.gender}</td>
+                <td>{u.age}</td>
+                <td>{u.city}</td>
+                <td>{u.activities.join(", ")}</td>
+                <td>{u.reason}</td>
               </tr>
             ))}
           </tbody>
         </table>
       </section>
 
-      {/* Add Event */}
       <section className="event-form-section">
         <h2>{editId ? "Edit Event" : "Add New Event"}</h2>
 
@@ -203,7 +172,7 @@ function AdminDashboard() {
         </form>
       </section>
 
-      {/* All Events */}
+      {/* all event */}
       <section className="events-list">
         <h2>All Events</h2>
 
@@ -216,8 +185,16 @@ function AdminDashboard() {
               <p>{item.description.substring(0, 80)}...</p>
 
               <div className="btn-row">
-                <button onClick={() => handleEdit(item)} className="edit-btn">Edit</button>
-                <button onClick={() => handleDelete(item._id)} className="delete-btn">Delete</button>
+                <button onClick={() => handleEdit(item)} className="edit-btn">
+                  Edit
+                </button>
+
+                <button
+                  onClick={() => handleDelete(item._id)}
+                  className="delete-btn"
+                >
+                  Delete
+                </button>
               </div>
             </div>
           ))}
@@ -228,4 +205,3 @@ function AdminDashboard() {
 }
 
 export default AdminDashboard;
-

@@ -1,0 +1,80 @@
+/* CONTAINER */
+.fitness-container {
+  width: 100%;
+  padding: 30px;
+  background: #f4f7fb;
+  min-height: 100vh;
+}
+
+/* TITLE */
+.fitness-title {
+  text-align: center;
+  font-size: 38px;
+  color: #0a3d62;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.fitness-subtitle {
+  text-align: center;
+  font-size: 18px;
+  color: #3c6382;
+  margin-bottom: 35px;
+}
+
+/* EVENT GALLERY */
+.event-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+  gap: 25px;
+}
+
+/* EVENT CARD */
+.event-card {
+  background: white;
+  border-radius: 12px;
+  padding: 18px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: 0.3s;
+}
+
+.event-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.15);
+}
+
+/* TEXT */
+.event-title {
+  font-size: 22px;
+  font-weight: 600;
+  color: #1e3799;
+}
+
+.event-description {
+  color: #34495e;
+  margin: 10px 0 15px;
+}
+
+/* IMAGE */
+.event-image {
+  width: 100%;
+  height: 220px;
+  border-radius: 10px;
+  object-fit: cover;
+  margin-bottom: 12px;
+}
+
+/* VIDEO */
+.event-video {
+  width: 100%;
+  height: 250px;
+  border-radius: 10px;
+  background: #000;
+}
+
+/* NO EVENT */
+.no-event {
+  text-align: center;
+  color: #636e72;
+  font-size: 18px;
+}

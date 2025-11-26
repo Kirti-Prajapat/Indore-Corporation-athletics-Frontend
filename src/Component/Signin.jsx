@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 function Signin() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-//   const navigate = useNavigate();
+  const navigate = useNavigate();
 
 
    const handleLogin = async(e)=>{
@@ -27,18 +27,18 @@ function Signin() {
 
     alert(response.data.message);
 
-    // const role = response.data.user.role;
+    const role = response.data.user.role;
 
     const token=response.data.token
     localStorage.setItem('token',token)
     console.log(token)
 
 
-    //  if (role === "admin") {
-    //     navigate("/admin");
-    //   } else {
-    //     navigate("/");
-    //   }
+     if (role === "admin") {
+        navigate("/admin");
+      } else {
+        navigate("/");
+      }
 
     } catch(error){
       alert(error.response?.data?.message || "Login Failed");

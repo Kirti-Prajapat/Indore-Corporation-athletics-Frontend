@@ -1,5 +1,6 @@
 .footer {
-  background: linear-gradient(100deg, #001f3f, #004080, #ff3b30);
+  /* background: linear-gradient(100deg, #001f3f, #004080, #ff3b30); */
+  background: linear-gradient(120deg, #000428, #004e92);
   background-size: 200% 200%;
   animation: footerGradient 6s ease infinite;
   color: #fff;
@@ -31,16 +32,45 @@
   }
 }
 
-/* Hover glow */
 .footer:hover {
   text-shadow: 0px 0px 8px rgba(255, 255, 255, 0.6);
   transition: text-shadow 0.3s ease;
 }
-
-/*  Responsive font size */
+/* 
 @media (max-width: 600px) {
   .footer {
     font-size: 0.9rem;
     padding: 14px 0;
+  }
+} */
+@media (min-width: 768px) {
+  .footer:hover {
+    text-shadow: 0px 0px 8px rgba(255, 255, 255, 0.6);
+    transition: text-shadow 0.3s ease;
+  }
+}
+
+/* Responsive footer – tablets */
+@media (max-width: 768px) {
+  .footer {
+    padding: 15px 0;
+    font-size: 0.95rem;
+  }
+}
+
+/* Small mobile devices */
+@media (max-width: 480px) {
+  .footer {
+    padding: 12px 0;
+    font-size: 0.85rem;
+    letter-spacing: 0.3px;
+  }
+}
+
+/* Extra small devices */
+@media (max-width: 360px) {
+  .footer {
+    padding: 10px 0;
+    font-size: 0.8rem;
   }
 }

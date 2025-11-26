@@ -1,47 +1,57 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useSelector, useDispatch } from "react-redux";
 import '../Style/Navbar.css';
+import { GiHamburgerMenu } from "react-icons/gi";
+import { IoClose } from "react-icons/io5";
 
 function Navbar() {
-  // const { user } = useSelector((state) => state.auth);
   const user = null;
+  const [menuOpen, setMenuOpen] = useState(false);
 
-  // const dispatch = useDispatch();
   return (
-    <div className="navbar">
-      {/* Left Section: Logo + Heading */}
-      <div className="navbar-left">
-        <img src="/Images/logo.jpg" alt="logo" className="logo" />
-        <h3>Indore Corporation Athletics</h3>
+    <>
+      <div className="navbar">
+        <div className="navbar-left">
+          <img src="/Images/logo.jpg" alt="logo" className="logo" />
+          <h3>Indore Corporation Athletics</h3>
+        </div>
+
+        <div className="navbar-right">
+          <Link to="/">Home</Link>
+          {!user && (
+            <>
+              <Link to="/signup">Signup</Link>
+              <Link to="/login">Signin</Link>
+              <Link to="/register">Register</Link>
+              <Link to="/contact">Contact Us</Link>
+
+             
+            </>
+          )}
+        </div>
+
+         {/* HAMBURGER */}
+              <GiHamburgerMenu
+                className="hamburger"
+                onClick={() => setMenuOpen(true)}
+              />
       </div>
 
-      {/* Right Section: Links */}
-      <div className="navbar-right">
-        <Link to="/">Home</Link>
-       
-        
-         {/* <Link to="/apply">Apply</Link> */}
+      {/* ---------- Mobile Slide Menu ---------- */}
+      {menuOpen && (
+        <div className="mobile-menu-overlay" onClick={() => setMenuOpen(false)}>
+          <div className="mobile-menu" onClick={(e) => e.stopPropagation()}>
+            <IoClose className="close-menubar" onClick={() => setMenuOpen(false)} />
 
-         {user ? (
-          <>
-            <Link to="/admin">Admin</Link>
-            <button
-              onClick={() => dispatch(logout())}
-              className="bg-red-500 px-3 py-1 rounded"
-            >
-              Logout
-            </button>
-          </>
-        ) : (
-          <>
-            <Link to="/signup">Signup</Link>
-             <Link to="/login">Signin</Link>
-            <Link to="/register">Register</Link>
-          </>
-        )}
-      </div>
-    </div>
+            <Link to="/" onClick={() => setMenuOpen(false)}>Home</Link>
+            <Link to="/signup" onClick={() => setMenuOpen(false)}>Signup</Link>
+            <Link to="/login" onClick={() => setMenuOpen(false)}>Signin</Link>
+            <Link to="/register" onClick={() => setMenuOpen(false)}>Register</Link>
+            <Link to="/contact" onClick={() => setMenuOpen(false)}>Contact Us</Link>
+          </div>
+        </div>
+      )}
+    </>
   );
 }
 
