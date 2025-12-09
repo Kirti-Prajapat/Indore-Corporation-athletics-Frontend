@@ -1,199 +1,242 @@
-/* ---------- Main Container ---------- */
-.dashboard-container {
-  width: 100%;
-  min-height: 100vh;
-  padding: 30px;
-  background: #f4f6fa;
-  font-family: "Poppins", sans-serif;
+/* Main layout */
+.admin-container {
+  display: flex;
+  height: 100vh;
+  background: #f5f6fa;
+  font-family: 'Segoe UI', sans-serif;
 }
 
-.dashboard-title {
+/* Sidebar */
+.sidebar {
+  width: 260px;
+  background: #001f3f;
+  color: #fff;
+  padding: 25px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.sidebar h2 {
   text-align: center;
-  font-size: 32px;
-  font-weight: 700;
-  margin-bottom: 30px;
-  color: #2f2f40;
-}
-
-/* ---------- User Table Section ---------- */
-.user-section {
-  background: #fff;
-  padding: 25px;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  margin-bottom: 35px;
-}
-
-.user-section h2 {
   margin-bottom: 20px;
+  font-size: 22px;
 }
 
-.user-table {
+.sidebar button {
+  padding: 12px;
+  background: #03346e;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-size: 15px;
+  border-radius: 6px;
+  transition: 0.3s;
+}
+
+.sidebar button:hover {
+  background: #074ea6;
+}
+
+.sidebar .active {
+  background: #be4741 !important;
+}
+
+/* Content area */
+.content {
+  flex: 1;
+  padding: 30px;
+  overflow-y: auto;
+}
+
+.content h2 {
+  margin-bottom: 20px;
+  color: #001f3f;
+}
+
+/* Table styling */
+.data-table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 15px;
-  overflow: hidden;
+  background: #fff;
   border-radius: 10px;
+  overflow: hidden;
 }
 
-.user-table thead {
-  background: #4c5bf9;
-  color: white;
+.data-table th {
+  background: #03346e;
+  color: #fff;
+  padding: 12px;
+  text-align: left;
 }
 
-.user-table th,
-.user-table td {
-  padding: 14px 12px;
-  text-align: center;
+.data-table td {
+  padding: 12px;
   border-bottom: 1px solid #ddd;
 }
 
+.data-table tr:nth-child(even) {
+  background: #f0f4ff;
+}
 
-/* ---------- Add / Edit Event Form ---------- */
-.event-form-section {
+/* Form Styling */
+.event-form {
   background: #fff;
   padding: 25px;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  margin-bottom: 35px;
-}
-
-.event-form-section h2 {
-  margin-bottom: 15px;
-}
-
-.event-form {
+  border-radius: 10px;
   display: flex;
   flex-direction: column;
+  gap: 14px;
 }
 
 .event-form input,
 .event-form textarea {
+  width: 100%;
   padding: 12px;
-  margin-bottom: 12px;
   border: 1px solid #ccc;
-  border-radius: 10px;
+  border-radius: 6px;
   font-size: 15px;
-  outline: none;
 }
 
 .event-form textarea {
-  min-height: 100px;
-  resize: vertical;
+  height: 120px;
+  resize: none;
 }
 
 .btn-submit {
-  width: 180px;
   padding: 12px;
-  background: #4c5bf9;
-  color: white;
+  background: #001f3f;
+  color: #fff;
   border: none;
-  border-radius: 10px;
+  border-radius: 6px;
   cursor: pointer;
   font-size: 16px;
+  transition: 0.3s ease;
 }
 
 .btn-submit:hover {
-  background: #3947d6;
+  background: #03346e;
 }
 
-/* ---------- Events List ---------- */
-.events-list {
-  background: #fff;
-  padding: 25px;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-}
-
-.events-list h2 {
-  margin-bottom: 20px;
-}
-
-/* ---------- Event Cards Grid ---------- */
+/* Event cards */
 .event-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 20px;
 }
 
 .event-card {
   background: #fff;
-  border-radius: 12px;
+  border-radius: 10px;
   padding: 15px;
-  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 3px 12px rgba(0,0,0,0.1);
   transition: 0.3s;
 }
 
 .event-card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-3px);
 }
 
 .event-card img {
   width: 100%;
   height: 160px;
   object-fit: cover;
-  border-radius: 10px;
+  border-radius: 8px;
+  margin-bottom: 12px;
 }
 
 .event-card h3 {
-  margin: 10px 0;
   font-size: 18px;
-  color: #333;
+  margin-bottom: 8px;
+  color: #001f3f;
 }
 
 .event-card p {
   font-size: 14px;
-  color: #555;
+  color: #444;
+  margin-bottom: 12px;
 }
 
-/* ---------- Edit & Delete Buttons ---------- */
 .btn-row {
   display: flex;
-  justify-content: center;
-  margin-top: 10px;
-  gap: 10px;
- 
+  justify-content: space-between;
 }
 
 .edit-btn,
 .delete-btn {
-  padding: 8px 14px;
+  padding: 8px 12px;
   border: none;
-  border-radius: 8px;
   cursor: pointer;
+  border-radius: 6px;
   font-size: 14px;
-  font-weight: bold;
+  color: #fff;
+  transition: 0.2s;
 }
 
 .edit-btn {
-  background: #002aff;
-  color: #fff;
+  background: #074ea6;
 }
 
 .edit-btn:hover {
-  background: #3d3dfc;
+  background: #053a7a;
 }
 
 .delete-btn {
-  background: #d32121;
-  color: white;
+  background: #be4741;
 }
 
 .delete-btn:hover {
-  background: #d93b3b;
+  background: #912f29;
 }
 
-/* ---------- Responsive ---------- */
-@media (max-width: 768px) {
-  .dashboard-container {
-    padding: 20px;
+/* LIVE STREAM SECTION */
+.live-box {
+  background: #fff;
+  padding: 25px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-width: 500px;
+}
+
+.live-box input {
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 15px;
+}
+
+.live-btn {
+  padding: 12px;
+  background: #be4741;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: 0.3s;
+}
+
+.live-btn:hover {
+  background: #912f29;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .admin-container {
+    flex-direction: column;
   }
 
-  .btn-submit {
+  .sidebar {
     width: 100%;
+    flex-direction: row;
+    overflow-x: auto;
+    gap: 10px;
   }
 
-  .event-card img {
-    height: 140px;
+  .sidebar button {
+    flex: 1;
+    white-space: nowrap;
   }
 }

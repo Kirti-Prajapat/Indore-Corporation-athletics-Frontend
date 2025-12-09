@@ -1,5 +1,5 @@
 import React from 'react'
-import {Routes, Route, BrowserRouter} from 'react-router-dom'
+import { Routes, Route, BrowserRouter } from 'react-router-dom'
 import Signin from './Component/Signin'
 import Signup from './Component/Signup'
 import Navbar from './Component/Navbar'
@@ -15,6 +15,8 @@ import AdminPanel from './Component/AdminPanel'
 import Registration from './Component/Registration'
 import PhysicalFitness from './Pages/PhysicalFitness'
 import ContactUs from './Component/ContactUs'
+import PrivateRoute from './Component/PrivateRoute'
+import LiveVideo from './Pages/LiveVideo'
 
 
 function App() {
@@ -22,24 +24,30 @@ function App() {
 
   return (
     <>
-      <Navbar/>
+      <Navbar />
       <Routes>
-        <Route path='/' element={<Home/>}></Route>
-        <Route path='/signup' element={<Signup/>}></Route>
-        <Route path='/signin' element={<Signin/>}></Route>
-        <Route path='/login' element={<Login/>}></Route>
-        <Route path='/register' element={<Registration/>}></Route>
-        <Route path='/contact' element={<ContactUs/>}></Route>
+        <Route path='/' element={<Home />}></Route>
+        <Route path='/signup' element={<Signup />}></Route>
+        <Route path='/signin' element={<Signin />}></Route>
+        <Route path='/login' element={<Login />}></Route>
+        <Route path='/register' element={<Registration />}></Route>
+        <Route path='/contact' element={<ContactUs />}></Route>
         {/* <Route path='/apply' element={<ApplyForm/>}></Route> */}
-        <Route path='/admindashboard' element={<AdminDashboard/>}></Route>
-        <Route path='/adminsignup' element={<AdminSignup/>}></Route>
-        <Route path='/adminsignin' element={<AdminSignin/>}></Route>
-        <Route path='/adminpanel' element={<AdminPanel/>}></Route>
+        <Route path='/admindashboard' element={<AdminDashboard />}></Route>
+        <Route path='/adminsignup' element={<AdminSignup />}></Route>
+        <Route path='/adminsignin' element={<AdminSignin />}></Route>
+        <Route path='/adminpanel' element={<AdminPanel />}></Route>
 
-        <Route path='/armypolice' element={<ArmyPoliceTraining/>}></Route>
-        <Route path='/physicalFitness' element={<PhysicalFitness/>}></Route>
+        <Route path='/armypolice' element={<ArmyPoliceTraining />}></Route>
+        <Route path='/physicalFitness' element={<PhysicalFitness />}></Route>
+        <Route path="/live" element={
+            <PrivateRoute>
+              <LiveVideo />
+            </PrivateRoute>
+          }
+        />
       </Routes>
-        <Footer/>
+      <Footer />
     </>
   )
 }

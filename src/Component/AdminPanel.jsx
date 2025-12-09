@@ -17,7 +17,7 @@ function AdminPanel() {
   // Fetch events
   const fetchEvents = async () => {
     try {
-      const res = await axios.get("http://localhost:9900/eventdata/getEvent");
+      const res = await axios.get("https://indore-corporation-athletics-backend.onrender.com/getEvent/eventdata/getEvent");
       setEvents(res.data);
     } catch (error) {
       console.log(error);

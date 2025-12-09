@@ -15,7 +15,7 @@ function Signup() {
     // alert("Signup successful!")
 
     try {
-      const response = await axios.post("http://localhost:9900/athletics/signup",
+      const response = await axios.post("https://indore-corporation-athletics-backend.onrender.com/athletics/signup",
         {
           name,
           email,

@@ -79,3 +79,41 @@
   color: #e63946;
   font-weight: bold;
 }
+
+/* Container for select if needed */
+.live-select-container {
+  margin: 15px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+/* Style for select element */
+.live-select-container select {
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #fff;
+  font-size: 16px;
+  color: #333;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+/* Hover effect */
+.live-select-container select:hover {
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+}
+
+/* Focus effect */
+.live-select-container select:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* Option styling (browser dependent, limited control) */
+.live-select-container select option {
+  padding: 8px;
+  font-size: 15px;
+}

@@ -20,7 +20,7 @@ function Signin() {
 
 
     try{
-      const response = await axios.post("http://localhost:9900/athletics/signin",
+      const response = await axios.post("https://indore-corporation-athletics-backend.onrender.com/athletics/signin",
         {email,
         password,
     });

@@ -20,7 +20,7 @@ function AdminSignin() {
 
 
     try{
-      const response = await axios.post("http://localhost:9900/adminverify/signinadmin",
+      const response = await axios.post("https://indore-corporation-athletics-backend.onrender.com/adminverify/signinadmin",
         {email,
         password,
     });

@@ -45,7 +45,7 @@ function Registration() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:9900/athletics/register", formData);
+      const res = await axios.post("https://indore-corporation-athletics-backend.onrender.com/athletics/register", formData);
       alert(res.data.message);
     } catch (err) {
       alert("Error: " + err.response.data.message);

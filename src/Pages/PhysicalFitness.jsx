@@ -7,7 +7,7 @@ function PhysicalFitness() {
 
   const fetchData = async () => {
     try {
-      const res = await axios.get("http://localhost:9900/eventdata/getEvent");
+      const res = await axios.get("https://indore-corporation-athletics-backend.onrender.com/eventdata/getEvent");
       // Filter only “Physical Fitness & Gym” category
       const filtered = res.data.filter(
         (item) => item.title.toLowerCase().includes("gym") ||

@@ -15,7 +15,7 @@ function AdminSignup() {
 
     try {
       const response = await axios.post(
-        "http://localhost:9900/adminverify/signupadmin",
+        "https://indore-corporation-athletics-backend.onrender.com/adminverify/signupadmin",
         {
           email,
           password,
