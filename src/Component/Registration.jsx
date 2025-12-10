@@ -45,10 +45,19 @@ function Registration() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("https://indore-corporation-athletics-backend.onrender.com/athletics/register", formData);
+      const token = localStorage.getItem("token");
+      const res = await axios.post("https://indore-corporation-athletics-backend.onrender.com/athletics/register",
+         formData, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  }
+      );
       alert(res.data.message);
     } catch (err) {
-      alert("Error: " + err.response.data.message);
+      // alert("Error: " + err.response.data.message);
+      console.log(err.response.data);
+      
     }
   };
 

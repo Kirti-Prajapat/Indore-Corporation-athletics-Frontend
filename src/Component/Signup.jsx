@@ -74,6 +74,7 @@ function Signup() {
               onChange={(e) => setPassword(e.target.value)}
               required
               placeholder="Enter password"
+              autoComplete="current-password"
             />
           </div>
 

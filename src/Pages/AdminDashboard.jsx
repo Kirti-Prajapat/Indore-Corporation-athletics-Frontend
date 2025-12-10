@@ -1,12 +1,16 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "../Style/AdminDashboard.css";
+import { useNavigate } from "react-router-dom";
+
 
 function AdminDashboard() {
   const [activeTab, setActiveTab] = useState("users"); // default screen
 
   const [athletes, setAthletes] = useState([]);
   const [events, setEvents] = useState([]);
+  const navigate = useNavigate();
+
 
   const [form, setForm] = useState({
     title: "",
@@ -25,9 +29,26 @@ function AdminDashboard() {
       const res = await axios.get("https://indore-corporation-athletics-backend.onrender.com/athletics/all");
       setAthletes(res.data);
     } catch (error) {
-      console.log(error);
-    }
+       
+    console.log(error);
+  }
   };
+
+
+//   const fetchAthletes = async () => {
+//   try {
+//     const res = await axios.get(
+//       "https://indore-corporation-athletics-backend.onrender.com/athletics/all",
+//       {
+//         headers: { Authorization: `Bearer ${token}` },
+//       }
+//     );
+//     setAthletes(res.data);
+//   } catch (error) {
+//     console.log("Error fetching athletes:", error.response?.data || error);
+//   }
+// };
+
 
   // Fetch events
   const fetchEvents = async () => {
@@ -35,7 +56,8 @@ function AdminDashboard() {
       const res = await axios.get("https://indore-corporation-athletics-backend.onrender.com/eventdata/getEvent");
       setEvents(res.data);
     } catch (error) {
-      console.log(error);
+       
+    console.log(error);
     }
   };
 
@@ -66,7 +88,8 @@ function AdminDashboard() {
       setEditId(null);
       fetchEvents();
     } catch (error) {
-      console.log(error);
+  
+    console.log(error);
     }
   };
 
@@ -92,7 +115,9 @@ function AdminDashboard() {
       alert("Event Deleted");
       fetchEvents();
     } catch (error) {
-      console.log(error);
+   
+    console.log(error);
+
     }
   };
 
@@ -114,7 +139,19 @@ function AdminDashboard() {
       setUrl("");
     } catch (error) {
       console.log(error);
-      alert("Error saving live URL");
+    //   alert("Error saving live URL");
+    // console.log("Backend message:", error.response.data);
+    // console.log("Status code:", error.response.status);
+
+    if (error.response && error.response.status === 401) {
+    alert("Session expired! Please login again.");
+    localStorage.removeItem("token");
+    navigate("/signin");
+  } else {
+    console.log("Backend message:", error.response?.data);
+    console.log("Status code:", error.response?.status);
+    alert("Error saving live URL");
+  }
     }
   };
 
@@ -275,7 +312,7 @@ function AdminDashboard() {
 
             {/* 🔽 SELECT EVENT DROPDOWN HERE */}
             <div className="live-select-container">
-              <select value={editId} onChange={(e) => setEditId(e.target.value)}>
+              <select value={editId || ""} onChange={(e) => setEditId(e.target.value)}>
                 <option value="">Select Event</option>
                 {events.map(ev => (
                   <option key={ev._id} value={ev._id}>{ev.title}</option>
