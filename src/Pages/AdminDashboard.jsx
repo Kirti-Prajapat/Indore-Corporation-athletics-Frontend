@@ -130,23 +130,21 @@ function AdminDashboard() {
 
     try {
       await axios.put(
-        `https://indore-corporation-athletics-backend.onrender.com/eventdata/toggle-Live/${editId}`,
+        `https://indore-corporation-athletics-backend.onrender.com/eventdata/togglelive/${editId}`,
         { liveURL:`https://www.youtube.com/embed/UCJKNaCURBPOp8jm?autoplay=1` },
         { headers: { Authorization: `Bearer ${token}` } }
       );
 
       alert("Live Stream URL Saved Successfully!");
       setUrl("");
+      fetchEvents();
     } catch (error) {
       console.log(error);
-    //   alert("Error saving live URL");
-    // console.log("Backend message:", error.response.data);
-    // console.log("Status code:", error.response.status);
 
     if (error.response && error.response.status === 401) {
     alert("Session expired! Please login again.");
     localStorage.removeItem("token");
-    navigate("/signin");
+    // navigate("/signin");
   } else {
     console.log("Backend message:", error.response?.data);
     console.log("Status code:", error.response?.status);
