@@ -130,7 +130,7 @@ function AdminDashboard() {
 
     try {
       await axios.put(
-        `https://indore-corporation-athletics-backend.onrender.com/eventdata/toggleLive/${editId}`,
+        `https://indore-corporation-athletics-backend.onrender.com/eventdata/toggle-Live/${editId}`,
         { liveURL:`https://www.youtube.com/embed/UCJKNaCURBPOp8jm?autoplay=1` },
         { headers: { Authorization: `Bearer ${token}` } }
       );
