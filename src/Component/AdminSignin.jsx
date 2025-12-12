@@ -32,6 +32,7 @@ function AdminSignin() {
     const token=response.data.token
     localStorage.setItem('token',token)
     console.log(token)
+    console.log(role)
 
 
      if (role === "admin") {

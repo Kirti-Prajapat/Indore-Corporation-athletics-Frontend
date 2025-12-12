@@ -122,37 +122,87 @@ function AdminDashboard() {
   };
 
   // Save Live Stream URL
-  const handleAdd = async () => {
-    if (!editId) {
-      alert("Please select an event");
+  // const handleAdd = async () => {
+  //   if (!editId) {
+  //     alert("Please select an event");
+  //     return;
+  //   }
+
+  //   try {
+      
+  //     await axios.put(
+  //       `https://indore-corporation-athletics-backend.onrender.com/eventdata/togglelive/${editId}`,
+  //       { liveURL:`https://www.youtube.com/embed/UCJKNaCURBPOp8jm?autoplay=1` },
+  //       { headers: { Authorization: `Bearer ${token}` } }
+  //     );
+
+  //     alert("Live Stream URL Saved Successfully!");
+  //     setUrl("");
+  //     fetchEvents();
+  //   } catch (error) {
+  //     console.log(error);
+
+  //   if (error.response && error.response.status === 401) {
+  //   alert("Session expired! Please login again.");
+  //   localStorage.removeItem("token");
+  //   // navigate("/signin");
+  // } else {
+  //   console.log("Backend message:", error.response?.data);
+  //   console.log("Status code:", error.response?.status);
+  //   alert("Error saving live URL");
+  // }
+  //   }
+  // };
+
+// Save Live Stream URL
+const handleAdd = async () => {
+  if (!editId) {
+    alert("Please select an event");
+    return;
+  }
+
+  if (!url) {
+    alert("Please enter a valid Live URL");
+    return;
+  }
+
+  try {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      alert("You are not logged in. Please sign in first.");
+      navigate("/signin");
       return;
     }
 
-    try {
-      await axios.put(
-        `https://indore-corporation-athletics-backend.onrender.com/eventdata/togglelive/${editId}`,
-        { liveURL:`https://www.youtube.com/embed/UCJKNaCURBPOp8jm?autoplay=1` },
-        { headers: { Authorization: `Bearer ${token}` } }
-      );
+    // PUT request to backend
+    const res = await axios.put(
+      `https://indore-corporation-athletics-backend.onrender.com/eventdata/toggleLive/${editId}`,
+      { liveURL: url },
+      { headers: { Authorization: `Bearer ${token}` } }
+    );
 
-      alert("Live Stream URL Saved Successfully!");
-      setUrl("");
-      fetchEvents();
-    } catch (error) {
-      console.log(error);
+    alert("Live Stream URL Saved Successfully!");
+    setUrl("");
+    fetchEvents();
 
-    if (error.response && error.response.status === 401) {
-    alert("Session expired! Please login again.");
-    localStorage.removeItem("token");
-    // navigate("/signin");
-  } else {
-    console.log("Backend message:", error.response?.data);
-    console.log("Status code:", error.response?.status);
-    alert("Error saving live URL");
-  }
+  } catch (error) {
+    console.error("Error saving live URL:", error);
+
+    if (error.response) {
+      if (error.response.status === 401) {
+        alert("Session expired! Please login again.");
+        localStorage.removeItem("token");
+        // navigate("/signin");
+      } else if (error.response.status === 404) {
+        alert("Event not found! Please refresh and try again.");
+      } else {
+        alert("Backend Error: " + JSON.stringify(error.response.data));
+      }
+    } else {
+      alert("Network or unknown error occurred");
     }
-  };
-
+  }
+};
 
   return (
     <div className="admin-container">

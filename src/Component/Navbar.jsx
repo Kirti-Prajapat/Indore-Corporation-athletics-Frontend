@@ -30,7 +30,8 @@ function Navbar() {
           )}
         </div>
 
-         {/* HAMBURGER */}
+         {/* Hamburger */}
+         
               <GiHamburgerMenu
                 className="hamburger"
                 onClick={() => setMenuOpen(true)}
