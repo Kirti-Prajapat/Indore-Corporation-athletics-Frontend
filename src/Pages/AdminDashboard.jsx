@@ -21,7 +21,8 @@ function AdminDashboard() {
 
   const [editId, setEditId] = useState(null);
   const [url, setUrl] = useState("");
-  const token = localStorage.getItem("token");
+  
+  const token = localStorage.getItem('token');
 
   // Fetch registered athletes
   const fetchAthletes = async () => {
@@ -66,9 +67,12 @@ function AdminDashboard() {
     fetchEvents();
   }, []);
 
+
+
   // Add / Update event
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     try {
       if (editId) {
         await axios.put(
